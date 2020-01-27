@@ -28,7 +28,6 @@ Constraint that states each mixed strategy of each player must be non-negative
    @NLconstraint(y,[i in 1:2],probstrata[i]>=0)
    @NLconstraint(y,[i in 1:2],probstratb[i]>=0)
 ```
-
 There needs to be a constraint that states each players strategies must equal to one.  The reason for this
 is that all of the strategies here are stated in probabilities which are given in
 percentages out of 100.  So for example a total strategy for a could be :
@@ -55,7 +54,6 @@ stored in "first".
    @NLexpression(y,first[i in 1:2],sum(payoffA[i,j]*probstratb[j] for j in 1:2))
    @NLexpression(y,second[j in 1:2],sum(payoffB[i,j]*probstrata[i] for i in 1:2))
 ```
-
 This is faster instead of declaring each separate complement.  Since we stored the 
 value of player a's "winnings" in first we can use the non-linear expression of the sum
 of the total strategies of a playing i and b playing j and vice versa.  The strategy
@@ -67,8 +65,7 @@ and lower bounds
    lower_bound_for_x = x                        F(x)>=0
    upper_bound_for_x =x                         F(x)<=0 
    ```
-   which wouldn't apply because we don't have an upper bound declared because all of our separate strategies are under the 
-constraint that they must sum up to 1 or 100 total percent.  The F(x) is the function of 
+The third equation wouldn't apply because we don't have an upper bound declared because all of our separate strategies are under the constraint that they must sum up to 1 or 100 total percent.  The F(x) is the function of 
 our variable and it is what we are trying to find out.  For this problem the F(x) is the 
 probability of a Nash equilibrium being achieved where no players wish to change their
 strategy and optimal winnings are achieved for all.  
@@ -86,28 +83,21 @@ for i in 1:2
 
    optimize!(y)
 ```
-
 The maximum winnings for player a.
-value.(maxa)
+```value.(maxa)
+   5.999999993229386
 ```
-5.999999993229386
-```
-
 The probability of player a winning for each strategy
-value.(probstrata)
- ```
- 0.49999999950597457
- 0.5000000004933631 
+ ```value.(probstrata)
+    0.49999999950597457
+    0.5000000004933631 
  ```
 
-value.(maxb)
+```value.(maxb)
+   5.499999993582053
 ```
-5.499999993582053
-```
-
 The probability of player b winning for each strategy
 achieved
-
 ```value.(probstratb)
    0.42857142857115754
    0.5714285714280565
