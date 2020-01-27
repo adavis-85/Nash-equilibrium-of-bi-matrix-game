@@ -84,21 +84,25 @@ for i in 1:2
    optimize!(y)
 ```
 The maximum winnings for player a.
-```value.(maxa)
+```
+   value.(maxa)
    5.999999993229386
 ```
 The probability of player a winning for each strategy
- ```value.(probstrata)
+ ```
+    value.(probstrata)
     0.49999999950597457
     0.5000000004933631 
  ```
 
-```value.(maxb)
+```
+   value.(maxb)
    5.499999993582053
 ```
 The probability of player b winning for each strategy
 achieved
-```value.(probstratb)
+```
+   value.(probstratb)
    0.42857142857115754
    0.5714285714280565
  ``` 
